@@ -1,6 +1,5 @@
 // Register a Service Worker.
-const sw = navigator.serviceWorker.register('./service-worker.js');
-console.log(sw);
+navigator.serviceWorker.register('./service-worker.js');
 
 const init = async () => {
   const sw = await navigator.serviceWorker.ready;
