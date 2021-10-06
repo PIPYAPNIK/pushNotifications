@@ -9,9 +9,9 @@ const showNotification = (title, body, data) => {
   return;
 }
 
-self.addEventListener('push', async (event) => {
+self.addEventListener('push', (event) => {
   let message = event.data ? event.data.message : 'no payload';
-  event.waitUntil(() => {
+  event.waitUntil(async () => {
     const notifications = await self.registration.getNotifications();
     console.log(notifications);
 
