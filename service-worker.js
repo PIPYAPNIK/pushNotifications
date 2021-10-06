@@ -1,7 +1,7 @@
-self.addEventListener('push', (event) => {
+self.addEventListener('push', function(event) {
   let message = event.data ? event.data.message : 'no payload';
   event.waitUntil(function() {
-    return self.registration.getNotifications(notificationFilter)
+    return self.registration.getNotifications()
       .then(function(notifications) {
         if (notifications && notifications.length !== 0) {
           let notificationCount = 1;
@@ -20,8 +20,6 @@ self.addEventListener('push', (event) => {
 
         const notificationOptions = {
           body: message,
-          tag: 'notification',
-          data: notificationData,
         };
     
         return self.registration.showNotification('Test notification', notificationOptions);
