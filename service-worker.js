@@ -10,10 +10,10 @@ const showNotification = (title, body, icon, data) => {
   return;
 }
 
-self.addEventListener('push', (event) => {
+self.addEventListener('push', async (event) => {
   let message = event.data ? event.data.message : 'no payload';
   event.waitUntil(() => {
-    const notifications = self.registration.getNotifications();
+    const notifications = await self.registration.getNotifications();
     console.log(notifications);
 
     if (notifications && notifications.length !== 0) {
