@@ -1,28 +1,43 @@
 self.addEventListener('push', function(event) {
   let message = event.data ? event.data.message : 'no payload';
-  event.waitUntil(function() {
-    return self.registration.getNotifications()
-      .then(function(notifications) {
-        if (notifications && notifications.length !== 0) {
-          let notificationCount = 1;
-          for (let i = 0; i < notifications.length; i++) {
-            let existingNotification = notifications[i];
-            if (existingNotification.data && existingNotification.data.notificationCount) {
-              notificationCount += existingNotification.data.notificationCount;
-            } else {
-              notificationCount++;
-            }
-            existingNotification.close();
-          }
-          message = 'You have ' + notificationCount + ' weather updates.';
-          notificationData.notificationCount = notificationCount;
-        }
 
-        const notificationOptions = {
-          body: message,
-        };
+  const promiseChain = registration.getNotifications()
+    .then(notifications => {
+      let currentNotification;
+
+      for(let i = 0; i < notifications.length; i++) {
+        if (notifications[i].data) {
+          currentNotification = notifications[i];
+        }
+      }
+      return currentNotification;
+    }).then((currentNotification) => {
+      let notificationTitle;
+      const options = {};
     
-        return self.registration.showNotification('Test notification', notificationOptions);
-      });
-  });
+      if (currentNotification) {
+        const messageCount = currentNotification.data.newMessageCount + 1;
+    
+        options.body = `You have ${messageCount} new messages.`;
+        options.data = {
+          newMessageCount: messageCount
+        };
+        notificationTitle = `New Messages`;
+    
+        currentNotification.close();
+      } else {
+        options.body = `"${message}"`;
+        options.data = {
+          newMessageCount: 1
+        };
+        notificationTitle = `New Message`;
+      }
+    
+      return registration.showNotification(
+        notificationTitle,
+        options,
+      );
+    });
+
+  event.waitUntil(promiseChain);
 });
