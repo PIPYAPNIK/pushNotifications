@@ -1,14 +1,3 @@
-const showNotification = (title, body, data) => {
-  const notificationOptions = {
-    body: body,
-    tag: 'notification',
-    data: data
-  };
-
-  self.registration.showNotification(title, notificationOptions);
-  return;
-}
-
 self.addEventListener('push', (event) => {
   let message = event.data ? event.data.message : 'no payload';
   event.waitUntil(async () => {
@@ -30,7 +19,13 @@ self.addEventListener('push', (event) => {
       notificationData.notificationCount = notificationCount;
     }
 
-    showNotification('Test title', message, notificationData);
+    const notificationOptions = {
+      body: message,
+      tag: 'notification',
+      data: notificationData
+    };
+
+    self.registration.showNotification('Test notification', notificationOptions);
   }
   );
 });

@@ -6,11 +6,11 @@ const vapidKeys = {
 }; // Сгененрированные ключи
 
 const sub = {
-  "endpoint": "https://fcm.googleapis.com/fcm/send/dYSBuhTYt5k:APA91bECtF7C96hwh1EuRNfKhNQmI1yxUNdjF1kDow7PeqYkithQOTpY3gLjT9d5cJKjtF84H14QP272XbpdGfIwniOEzorYxbVcj-KihgDEYMBvWN6HMtMzuTkZqepCE6ZZNvIIHkht",
+  "endpoint": "https://fcm.googleapis.com/fcm/send/dtfM5rAuh5w:APA91bFP1henHtRYvOBNoDc5IV9iYfh2RMDHM44kWwBZaZs7vxFK3NvaUkjhtXGHdxzCIlxpR-RE-v7jJdbmLT4JGxyMMV8jcNNSN35A47oHGJTs43TgIDJyPKOSaePgoGCmoeLlMDg_",
   "expirationTime": null,
   "keys": {
-      "p256dh": "BDYU-cAdOsjCrtIEAI9AVNibCILFOIf_9ViuKYkPcvpKgBoql6aS6CV_4XE9XsSpUX4FdO0qrOx0yRURAEq_eaI",
-      "auth": "LWmF0bay0NylAEIwHEZ_pA"
+      "p256dh": "BCZtj-jmJN37t1CrqfeuoltaMglOjzlxrGe-ashUFENqID4CX4qxesZhg6ZTgDW9-Cd-bStIvUcKDKbCIWUw014",
+      "auth": "8q77eicmUnSrujk_NTzLPg"
   }
 }; // Объект подписки переданный с фронта
 
