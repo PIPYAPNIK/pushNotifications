@@ -1,7 +1,6 @@
-const showNotification = (title, body, icon, data) => {
+const showNotification = (title, body, data) => {
   const notificationOptions = {
     body: body,
-    icon: icon ? icon : 'images/touch/chrome-touch-icon-192x192.png',
     tag: 'notification',
     data: data
   };
@@ -18,7 +17,7 @@ self.addEventListener('push', async (event) => {
 
     if (notifications && notifications.length !== 0) {
       let notificationCount = 1;
-      for (let i = 0; i <= notifications.length - 1; i++) {
+      for (let i = 0; i < notifications.length; i++) {
         let existingNotification = notifications[i];
         if (existingNotification.data && existingNotification.data.notificationCount) {
           notificationCount += existingNotification.data.notificationCount;
@@ -31,7 +30,7 @@ self.addEventListener('push', async (event) => {
       notificationData.notificationCount = notificationCount;
     }
 
-    showNotification('Test title', message, icon, notificationData);
+    showNotification('Test title', message, notificationData);
   }
   );
 });
