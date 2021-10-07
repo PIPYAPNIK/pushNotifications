@@ -15,8 +15,12 @@ self.addEventListener('push', function(event) {
 
     if (notifications.length > 1) {
       let messageCount = 0;
-      notifications.map(el => {
-        messageCount++;
+      notifications.map(noty => {
+        if (noty.data && noty.data.count) {
+          messageCount += noty.data.count;
+        } else {
+          messageCount++;
+        }
         el.close();
       });
 
@@ -24,6 +28,9 @@ self.addEventListener('push', function(event) {
         `New Messagesssss`,
         {
           body: `You hame ${messageCount} messages`,
+          data: {
+            count: messageCount,
+          },
         },
       );
     }
