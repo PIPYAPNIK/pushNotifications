@@ -16,8 +16,8 @@ self.addEventListener('push', function(event) {
     if (notifications.length > 1) {
       let messageCount = 0;
       notifications.map(el => {
-        el.close();
         messageCount++;
+        el.close();
       });
 
       registration.showNotification(
