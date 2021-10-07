@@ -1,5 +1,5 @@
 self.addEventListener('push', function(event) {
-  let message = event.data ? event.data.message : 'no payload';
+  let message = event.data ? event.data.text() : 'no payload';
 
   async function notyWork() {
     const notifications = await registration.getNotifications();
