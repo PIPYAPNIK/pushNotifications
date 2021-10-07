@@ -21,7 +21,7 @@ self.addEventListener('push', function(event) {
         } else {
           messageCount++;
         }
-        el.close();
+        noty.close();
       });
 
       registration.showNotification(
