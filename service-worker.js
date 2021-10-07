@@ -10,7 +10,7 @@ self.addEventListener('push', function(event) {
     };
 
     if (notifications && notifications.length) {
-      let messageCount = 0;
+      let messageCount = 1;
       notifications.map(noty => {
         if (noty.data && noty.data.count) {
           messageCount += noty.data.count;
