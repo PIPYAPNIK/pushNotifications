@@ -3,15 +3,12 @@ self.addEventListener('push', function(event) {
 
   async function notyWork() {
     const notifications = await self.registration.getNotifications();
-    let notyTitle = '';
-    let notyOptions = {};
-    
-    if (notifications.length === 1) {
-      notyTitle = 'One noty';
-      notyOptions.body = message;
-    }
+    let notyTitle = 'One noty';
+    let notyOptions = {
+      body: message,
+    };
 
-    if (notifications.length > 1) {
+    if (notifications && notifications.length) {
       let messageCount = 0;
       notifications.map(noty => {
         if (noty.data && noty.data.count) {
