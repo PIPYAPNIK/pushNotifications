@@ -1,7 +1,7 @@
 self.addEventListener('push', function(event) {
   let message = event.data ? event.data.message : 'no payload';
 
-  event.waitUntil(async () => {
+  async function notyWork() {
     const notifications = await registration.getNotifications();
     
     if (notifications.length === 1) {
@@ -27,5 +27,7 @@ self.addEventListener('push', function(event) {
         },
       );
     }
-  });
+  };
+
+  event.waitUntil(notyWork());
 });
