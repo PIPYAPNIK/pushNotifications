@@ -1,7 +1,5 @@
 navigator.serviceWorker.register('./service-worker.js'); // Регистрируем
 
-console.log(navigator.serviceWorker.getRegistrations());
-
 const init = async () => {
   const sw = await navigator.serviceWorker.ready; // Запускаем
   const push = await sw.pushManager.subscribe({
