@@ -2,10 +2,10 @@ self.addEventListener('push', function(event) {
   let message = event.data ? event.data.text() : 'no payload';
 
   async function notyWork() {
-    const notifications = await registration.getNotifications();
+    const notifications = await self.registration.getNotifications();
     
     if (notifications.length === 1) {
-      registration.showNotification(
+      self.registration.showNotification(
         `New Message`,
         {
           body: message,
@@ -24,7 +24,7 @@ self.addEventListener('push', function(event) {
         noty.close();
       });
 
-      registration.showNotification(
+      self.registration.showNotification(
         `New Messagesssss`,
         {
           body: `You hame ${messageCount} messages`,
