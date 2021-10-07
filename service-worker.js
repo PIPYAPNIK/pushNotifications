@@ -6,6 +6,7 @@ self.addEventListener('push', function(event) {
     let notyTitle = 'One noty';
     let notyOptions = {
       body: message,
+      data: {},
     };
 
     if (notifications && notifications.length) {
