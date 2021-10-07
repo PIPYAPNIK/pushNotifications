@@ -3,14 +3,12 @@ self.addEventListener('push', function(event) {
 
   async function notyWork() {
     const notifications = await self.registration.getNotifications();
+    let notyTitle = '';
+    let notyOptions = {};
     
     if (notifications.length === 1) {
-      self.registration.showNotification(
-        `New Message`,
-        {
-          body: message,
-        },
-      );
+      notyTitle = 'One noty';
+      notyOptions.body = message;
     }
 
     if (notifications.length > 1) {
@@ -24,16 +22,15 @@ self.addEventListener('push', function(event) {
         noty.close();
       });
 
-      self.registration.showNotification(
-        `New Messagesssss`,
-        {
-          body: `You hame ${messageCount} messages`,
-          data: {
-            count: messageCount,
-          },
-        },
-      );
+      notyTitle = `Many messages`;
+      notyOptions.body = `You hame ${messageCount} messages`;
+      notyOptions.data.count = messageCount;
     }
+
+    self.registration.showNotification(
+      notyTitle,
+      notyOptions,
+    );
   };
 
   event.waitUntil(notyWork());
